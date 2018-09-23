@@ -1,16 +1,12 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import './index.css';
-// import App from './App';
-// import registerServiceWorker from './registerServiceWorker';
-
-// ReactDOM.render(<App />, document.getElementById('root'));
-// registerServiceWorker();
-
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {Provider} from 'react-redux'
+import registerServiceWorker from './registerServiceWorker'
 
 import { createStore, combineReducers, applyMiddleware } from "redux"
 import logger from 'redux-logger'
 
+import App from './components/App'
 
 
 // Apprentissage sur la base du site : https://www.youtube.com/watch?v=ZKCYqJu4n3s&list=PL55RiY5tL51rrC3sh8qLiYHqUV3twEYU_&index=3
@@ -71,7 +67,7 @@ const userReducer = (state = {
 }
 
 const store = createStore(
-  combineReducers({mathReducer, userReducer,}),
+  combineReducers({math: mathReducer, user: userReducer,}),
   {},
   applyMiddleware(logger)
 )
@@ -80,27 +76,10 @@ store.subscribe(() => {
   // console.log("Store updated : ", store.getState())
 })
 
-store.dispatch({
-  type: "ADD",
-  payload: 100
-})
 
-store.dispatch({
-  type: "ADD",
-  payload: 22
-})
-
-store.dispatch({
-  type: "SUBSTRACT",
-  payload: 80
-})
-
-store.dispatch({
-  type: "SET_AGE",
-  payload: 24
-})
-
-store.dispatch({
-  type: "SET_NAME",
-  payload: "Paul"
-})
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root'));
+registerServiceWorker();
