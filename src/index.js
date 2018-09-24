@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker'
 import { createStore, combineReducers, applyMiddleware } from "redux"
 import logger from 'redux-logger'
 
-import App from './components/App'
+import App from './app/containers/App'
 
 
 // Apprentissage sur la base du site : https://www.youtube.com/watch?v=ZKCYqJu4n3s&list=PL55RiY5tL51rrC3sh8qLiYHqUV3twEYU_&index=3
